@@ -6,9 +6,9 @@
 POST {{baseUrl}}/products/
 Content-Type: application/json
 
-{
-  "title": "Помидор",
-  "description": "Лучшие помидоры на рынке"
+{ 
+  "title": "Клюква",
+  "description": "Какая-то клюква"
 }
 
 ###
@@ -20,7 +20,7 @@ Content-Type: application/json
 ###
 
 # обновление продукта
-PATCH {{baseUrl}}/products/1/
+PATCH {{baseUrl}}/products/7/
 Content-Type: application/json
 
 {
@@ -30,13 +30,13 @@ Content-Type: application/json
 ###
 
 # удаление продукта
-DELETE {{baseUrl}}/products/1/
+DELETE {{baseUrl}}/products/9/
 Content-Type: application/json
 
 ###
 
 # поиск продуктов по названию и описанию
-GET {{baseUrl}}/products/?search=помидор
+GET {{baseUrl}}/products/?search=груша
 Content-Type: application/json
 
 ###
@@ -48,7 +48,7 @@ Content-Type: application/json
 {
   "address": "мой адрес не дом и не улица, мой адрес сегодня такой: www.ленинград-спб.ru3",
   "positions": [
-    {
+    { 
       "product": 2,
       "quantity": 250,
       "price": 120.50
