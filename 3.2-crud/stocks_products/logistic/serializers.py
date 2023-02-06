@@ -11,21 +11,19 @@ class ProductSerializer(serializers.ModelSerializer):
 class ProductPositionSerializer(serializers.ModelSerializer):
     class Meta:
         model = StockProduct
-        fields = ['id', 'quantity', 'product', 'stock', 'price']
+        fields = ['id', 'quantity', 'product', 'price']
 
 
 class StockSerializer(serializers.ModelSerializer):
     positions = ProductPositionSerializer(many=True)
     class Meta:
         model = Stock
-        fields = ['address', 'positions']
+        fields = ["address", "positions", "id"]
 
     def create(self, validated_data):
         positions = validated_data.pop('positions')
-        # # создаем склад по его параметрам
-        stock = Stock.objects.create(**validated_data)
-        StockProduct.objects.create(stock_id=stock, **positions)
-        return stock
+        stock = super().create(validated_data)
+        return positions
 
     def update(self, instance, validated_data):
         # достаем связанные данные для других таблиц
