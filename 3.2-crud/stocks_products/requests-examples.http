@@ -46,17 +46,12 @@ POST {{baseUrl}}/stocks/
 Content-Type: application/json
 
 {
-  "address": "Гагарина 105",
+  "address": "Гагарина 127",
   "positions": [
     { 
-      "product": 2,
-      "quantity": 25,
-      "price": 120.50
-    },
-    { 
-      "product": 8,
-      "quantity": 100,
-      "price": 180
+      "product": 1,
+      "quantity": 500,
+      "price": 90.05
     }
   ]
 }
@@ -64,20 +59,15 @@ Content-Type: application/json
 ###
 
 # обновляем записи на складе
-PATCH {{baseUrl}}/stocks/4/
+PATCH {{baseUrl}}/stocks/126/
 Content-Type: application/json
 
 {
   "positions": [
     {
       "product": 2,
-      "quantity": 100,
+      "quantity": 1000,
       "price": 130.80
-    },
-    {
-      "product": 3,
-      "quantity": 243,
-      "price": 145
     }
   ]
 }
@@ -87,3 +77,8 @@ Content-Type: application/json
 # поиск складов, где есть определенный продукт
 GET {{baseUrl}}/stocks/?products=2
 Content-Type: application/json
+    # {
+    #   "product": 3,
+    #   "quantity": 243,
+    #   "price": 145
+    # }

@@ -23,17 +23,15 @@ class StockSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         positions = validated_data.pop('positions')
         stock = super().create(validated_data)
-        return positions
+        for position in positions:
+            StockProduct.objects.create(**position, stock_id=stock.pk)
+        return stock
 
     def update(self, instance, validated_data):
-        # достаем связанные данные для других таблиц
         positions = validated_data.pop('positions')
-
-        # обновляем склад по его параметрам
         stock = super().update(instance, validated_data)
+        StockProduct.objects.filter(stock_id=instance.id).delete()
+        for position in positions:
+            StockProduct.objects.create(**position, stock_id=instance.id)
 
-        # здесь вам надо обновить связанные таблицы
-        # в нашем случае: таблицу StockProduct
-        # с помощью списка positions
-
-        return instance
+        return stock
